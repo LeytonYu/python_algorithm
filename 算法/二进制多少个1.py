@@ -1,0 +1,12 @@
+def countOnes(x):
+    count=0;
+    while x>0:
+        count+=1
+        print(bin(x), bin(x - 1))
+        x&=(x-1)
+    return count
+#二进制中有几个1，就循环几次。
+x=int(input())
+c=countOnes(x)
+print('binary form of {0} is {1}'.format(x,bin(x)))
+print('binary form of {0} contains {1} 1'.format(x,c))
