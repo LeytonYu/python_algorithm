@@ -1,11 +1,11 @@
 def countOnes(x):
-    count=0;
-    while x>0:
-        count+=1
-        print(bin(x), bin(x - 1))
-        x&=(x-1)
-    return count
-#二进制中有几个1，就循环几次。
+    # count=0;
+    # while x>0:
+    #     count+=1
+    #     print(bin(x), bin(x - 1))
+    #     x&=(x-1)
+    # return count
+    return sum(map(eval,list(bin(x)[2:])))  # More pythonic
 x=int(input())
 c=countOnes(x)
 print('binary form of {0} is {1}'.format(x,bin(x)))
