@@ -25,5 +25,33 @@ def mergeSort(A):
     return newA
 
 
+
+
+def merge_sort(A):
+    if len(A)<=1:
+        return A
+    half=int(len(A)/2)
+    f=merge_sort(A[:half])
+    s=merge_sort(A[half:])
+    i=0
+    j=0
+    new=[]
+    while i<len(f) or j <len(s):
+        if i<len(f) and j<len(s):
+            if f[i]<s[j]:
+                new.append(f[i])
+                i+=1
+            else:
+                new.append(s[j])
+                j+=1
+        else:
+            if i<len(f):
+                new.append(f[i])
+                i+=1
+            else:
+                new.append(s[j])
+                j+=1
+    return new
+
 A = [int(i) for i in input('请输入一些数字：').split()]
-print(mergeSort(A))
+print(merge_sort(A))

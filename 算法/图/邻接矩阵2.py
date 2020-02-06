@@ -13,3 +13,6 @@ class Graph:
             for j in i:
                 print(j, end=' ')
             print(' ')
+
+ss=Graph(10)
+print(ss.graph)
