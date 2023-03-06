@@ -1,15 +1,12 @@
 class Solution:
     def minimumDeletions(self, s: str) -> int:
-        leftb, righta = 0, s.count('a')
-        res = righta
+        ans = delete = s.count('a')
         for c in s:
-            if c == 'a':
-                righta -= 1
-            else:
-                leftb += 1
-            res = min(res, leftb + righta)
-        return res
+            delete -= 1 if c == 'a' else -1
+            if delete < ans:
+                ans = delete
+        return ans
 
 
 if __name__ == '__main__':
-    print(Solution().minimumDeletions(s = "aababbab"))
+    print(Solution().minimumDeletions(s = "aabaabbab"))
