@@ -48,5 +48,23 @@ class Solution:
         return sorted(value_stack.pop())
 
 
+class Solution2:
+    def braceExpansionII(self, expression: str) -> List[str]:
+        def dfs(exp):
+            j = exp.find('}')
+            if j == -1:
+                s.add(exp)
+                return
+            i = exp.rfind('{', 0, j - 1)
+            a, c = exp[:i], exp[j + 1:]
+            for b in exp[i + 1: j].split(','):
+                tp = a + b + c
+                dfs(tp)
+
+        s = set()
+        dfs(expression)
+        return sorted(s)
+
+
 if __name__ == '__main__':
-    print(Solution().braceExpansionII(expression = "{a{x,ia,o}w,{n,{g,u,o},{a,x,ia,o,w}},er}"))
+    print(Solution2().braceExpansionII(expression = "{a{x,ia,o}w,{n,{g,u,o},{a,x,ia,o,w}},er}"))
