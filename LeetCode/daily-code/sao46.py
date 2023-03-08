@@ -39,5 +39,16 @@ class Solution:
                     res = dp[i][j]
         return res
 
+    def maxValue2(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        f = grid[0]  # 这里没有拷贝，f 和 grid[0] 都持有同一段内存
+        for j in range(1, n):
+            f[j] += f[j - 1]
+        for i in range(1, m):
+            f[0] += grid[i][0]
+            for j in range(1, n):
+                f[j] = max(f[j - 1], f[j]) + grid[i][j]
+        return f[-1]
+
 
 print(Solution().maxValue([[1, 2], [5, 6], [1, 1]]))
