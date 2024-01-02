@@ -1,18 +1,33 @@
-
-def temp_test(lst: list):
-    ln = len(lst)
-    if ln < 1:
-        return 0
-    dp = [1] * ln
-    res = 1
-    for i in range(ln):
-        for j in range(i):
-            if lst[i] > lst[j] and dp[j] + 1 > dp[i]:
-                dp[i] = dp[j]+1
-        if dp[i] > res:
-            res = dp[i]
-    return res
+import collections
 
 
-print(temp_test([10,9,2,5,3,7,101,18]))
-print('github test')
+def bfs(graph, start):
+    visited = set()
+    queue = collections.deque([])
+
+    visited.add(start)
+    queue.append(start)
+
+    while queue:
+        node_u = queue.popleft()
+        print(node_u)
+        for node_v in graph[node_u]:
+            if node_v not in visited:
+                visited.add(node_v)
+                queue.append(node_v)
+
+
+def test_bfs():
+    graph = {
+        "A": ["B", "C"],
+        "B": ["A", "C", "D"],
+        "C": ["A", "B", "D", "E"],
+        "D": ["B", "C", "E", "F"],
+        "E": ["C", "D"],
+        "F": ["D"]
+    }
+    bfs(graph, 'A')
+
+
+if __name__ == '__main__':
+    test_bfs()
